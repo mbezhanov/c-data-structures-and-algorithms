@@ -15,7 +15,6 @@ main(int argc, char **argv)
     {
         return 1;
     }
-
     // init variables
     int size = atoi(argv[1]);
     int *data = malloc(sizeof(int) * size);
@@ -43,7 +42,8 @@ test_insertion(rbt_t *tree, int *data, int size)
     {
         rbt_insert(tree, data[i]);
 
-        if (!rbt_assert_valid(tree)) {
+        if (!rbt_assert_valid(tree))
+        {
             printf("FAIL! @rbt_insert(tree, %i)\n", data[i]);
             return;
         }
@@ -62,7 +62,8 @@ test_search(rbt_t *tree, int *data, int size)
         // test if existing values can be found
         node = rbt_search(tree, data[i]);
 
-        if (node == NULL) {
+        if (node == NULL)
+        {
             printf("FAIL! @rbt_search(tree, %i)\n", data[i]);
             return;
         }
@@ -70,7 +71,8 @@ test_search(rbt_t *tree, int *data, int size)
         // test if missing values cannot be found
         node = rbt_search(tree, data[i] * -1);
 
-        if (node != NULL) {
+        if (node != NULL)
+        {
             printf("FAIL! @rbt_search(tree, %i)\n", data[i] * -1);
             return;
         }
@@ -86,7 +88,8 @@ test_deletion(rbt_t *tree, int *data, int size)
     {
         rbt_delete(tree, data[i]);
 
-        if (!rbt_assert_valid(tree)) {
+        if (!rbt_assert_valid(tree))
+        {
             printf("FAIL! @rbt_delete(tree, %i)\n", data[i]);
             return;
         }
