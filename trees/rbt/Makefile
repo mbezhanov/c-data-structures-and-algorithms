@@ -3,10 +3,11 @@ CFLAGS=-g3 -Wall
 
 all: test
 
-test: rbt_test.o rbt.o
+test: test.o rbt.o ../utils/utils.o
 	$(CC) $(CFLAGS) -o $@ $^
-rbt_test.o: rbt_test.c rbt.h
+test.o: test.c ../utils/utils.h rbt.h
 rbt.o: rbt.c rbt.h
+../utils/utils.o: ../utils/utils.c ../utils/utils.h
 
 clean:
 	$(RM) test *.o
