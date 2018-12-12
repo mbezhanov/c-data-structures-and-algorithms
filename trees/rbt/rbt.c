@@ -278,7 +278,7 @@ rbt_search(rbt_t *tree, int value)
         current = current->link[direction];
     }
 
-    return current;
+    return NULL;
 }
 
 void
