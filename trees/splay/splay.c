@@ -127,8 +127,8 @@ splay_iterative(st_t *tree, int value)
             {
                 st_node_t *grandchild = parent->link[grandchild_direction];
 
-                // node is more than two steps away, in straight direction, from the current node, so perform a rotation
-                if (grandchild != NULL && grandchild->value != value)
+                // node is two or more steps away, in straight direction, from the current node, so perform a rotation
+                if (grandchild != NULL)
                 {
                     grandparent = rotate(grandparent, !direction);
                 }
@@ -209,7 +209,8 @@ st_delete(st_t *tree, int value)
     }
     else
     {
-        SPLAY(tree, tree->root->link[LEFT]->value);
+        tree->root = tree->root->link[LEFT];
+        SPLAY(tree, value);
         tree->root->link[RIGHT] = node->link[RIGHT];
     }
     free(node);

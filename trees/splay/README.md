@@ -56,7 +56,7 @@ Beginning from the root of the original tree, start moving down, searching for t
 
 As you move down, if the current node is not the node you're looking for:
 
-1. Perform a rotation, if the node you're looking for is located more than two steps away in a straight direction from the current node. For example, imagine you are searching for a node with a value of **less than 10** in the tree from the diagram below, and you're currently at the node with value **40** (**C** = current node; **OC** = old "current" node):
+1. Perform a rotation, if the node you're looking for is located two or more steps away in a straight direction from the current node. For example, imagine you are searching for a node with a value of **10** in the tree from the diagram below, and you're currently at the node with value **40** (**C** = current node; **OC** = old "current" node):
 
     ![Top-Down Splay Rotation](https://raw.githubusercontent.com/mbezhanov/c-data-structures-and-algorithms/master/trees/splay/images/splay-iterative-02.png)
 
@@ -116,7 +116,7 @@ Splay the tree at the value you'd like to remove. If a node with such value exis
 
 ![Splay Tree Deletion Case 1](https://raw.githubusercontent.com/mbezhanov/c-data-structures-and-algorithms/master/trees/splay/images/splay-delete-01.png)
 
-**Case 2**: left child is not NULL; splay the tree at the node for deletion's left child value (that way the node for deletion will become right child of the tree root), then make the node for deletion's right child to be right child of the tree root, and finally remove the node;
+**Case 2**: left child is not NULL; splay the node for deletion's left subtree at the value you'd like to remove (this will bring the node with the highest value in the left subtree to the root of the left subtree, and that node won't have a right child), then make the node for deletion's right child to be right child of the node for deletion's left child, make the node for deletion's left child the tree root, then delete the node;
 
 ![Splay Tree Deletion Case 2](https://raw.githubusercontent.com/mbezhanov/c-data-structures-and-algorithms/master/trees/splay/images/splay-delete-02.png)
 
