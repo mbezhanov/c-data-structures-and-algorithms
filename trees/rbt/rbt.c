@@ -265,20 +265,16 @@ rbt_delete(rbt_t *tree, int value)
 rbt_node_t*
 rbt_search(rbt_t *tree, int value)
 {
-    rbt_node_t *current = tree->root;
     int direction;
+    rbt_node_t *current = tree->root;
 
-    while (current != NULL)
+    while (current != NULL && current->value != value)
     {
-        if (current->value == value)
-        {
-            return current;
-        }
-        direction = value > current->value;
+        direction = value > current->value; // 0 = left; 1 = right;
         current = current->link[direction];
     }
 
-    return NULL;
+    return current;
 }
 
 void
