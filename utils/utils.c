@@ -7,7 +7,7 @@ print_usage_details(const char *command)
 {
     fprintf(stderr, "Usage: %s [arguments]\n\n", command);
     fprintf(stderr, "Arguments:\n");
-    fprintf(stderr, "  size      Number of nodes to insert into the tree.\n");
+    fprintf(stderr, "  size      Number of nodes to insert into the data structure.\n");
     fprintf(stderr, "  seed      An int for seeding the random number generator (default: 1)\n");
     fprintf(stderr, "  interval  Interval between subsequent node values (default: 5)\n");
 }
