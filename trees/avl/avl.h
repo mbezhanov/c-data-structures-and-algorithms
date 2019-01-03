@@ -15,7 +15,7 @@ struct avl_s {
 };
 
 // core functions
-avl_t* avl_create();
+avl_t* avl_create(void);
 void avl_insert(avl_t *tree, int value);
 void avl_delete(avl_t *tree, int value);
 avl_node_t *avl_search(avl_t *tree, int value);

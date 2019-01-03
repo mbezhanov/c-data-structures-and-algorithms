@@ -15,7 +15,7 @@ struct treap_s {
 };
 
 // core functions
-treap_t *treap_create();
+treap_t *treap_create(void);
 void treap_insert(treap_t *tree, int value);
 void treap_delete(treap_t *tree, int value);
 treap_node_t *treap_search(treap_t *tree, int value);

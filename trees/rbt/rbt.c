@@ -9,7 +9,7 @@
 #define RED_VIOLATION_NONE (-1)
 
 rbt_t*
-rbt_create()
+rbt_create(void)
 {
     rbt_t *tree = malloc(sizeof(rbt_t));
     assert(tree);

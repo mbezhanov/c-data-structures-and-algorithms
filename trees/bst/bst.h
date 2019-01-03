@@ -14,11 +14,11 @@ struct bst_s {
 };
 
 // core functions
-bst_t* bst_create();
+bst_t* bst_create(void);
 void bst_insert(bst_t *tree, int value);
 void bst_delete(bst_t *tree, int value);
 bst_node_t* bst_search(bst_t *tree, int value);
-void bst_destroy();
+void bst_destroy(bst_t *tree);
 
 // helper functions
 int bst_assert_valid(bst_t *tree);

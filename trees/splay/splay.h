@@ -14,7 +14,7 @@ struct st_s {
 };
 
 // core functions
-st_t *st_create();
+st_t *st_create(void);
 void st_insert(st_t *tree, int value);
 void st_delete(st_t *tree, int value);
 st_node_t *st_search(st_t *tree, int value);

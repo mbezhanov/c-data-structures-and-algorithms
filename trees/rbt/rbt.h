@@ -15,11 +15,11 @@ struct rbt_s {
 };
 
 // core functions
-rbt_t *rbt_create();
+rbt_t *rbt_create(void);
 void rbt_insert(rbt_t *tree, int value);
 void rbt_delete(rbt_t *tree, int value);
 rbt_node_t *rbt_search(rbt_t *tree, int value);
-void rbt_destroy();
+void rbt_destroy(rbt_t *tree);
 
 // helper functions
 int rbt_assert_valid(rbt_t *tree);

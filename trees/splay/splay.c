@@ -4,9 +4,9 @@
 #include "splay.h"
 
 #ifdef SPLAY_RECURSIVE
-#   define SPLAY(tree, value) splay_recursive(tree, value)
+#define SPLAY(tree, value) splay_recursive(tree, value)
 #else
-#   define SPLAY(tree, value) splay_iterative(tree, value)
+#define SPLAY(tree, value) splay_iterative(tree, value)
 #endif
 
 #define DUMMY_VALUE (-1)
@@ -14,7 +14,7 @@
 #define RIGHT (1)
 
 st_t*
-st_create()
+st_create(void)
 {
     st_t *tree = malloc(sizeof(st_t));
     assert(tree);
@@ -45,6 +45,8 @@ rotate(st_node_t *parent, int direction)
 
     return child; // after rotation, "child" becomes parent of "parent"
 }
+
+#ifdef SPLAY_RECURSIVE
 
 static st_node_t*
 splay_recursive_internal(st_node_t *grandparent, int value)
@@ -93,6 +95,8 @@ splay_recursive(st_t *tree, int value)
 {
     tree->root = splay_recursive_internal(tree->root, value);
 }
+
+#else
 
 static void
 splay_iterative(st_t *tree, int value)
@@ -161,6 +165,8 @@ splay_iterative(st_t *tree, int value)
 
     tree->root = grandparent;
 }
+
+#endif
 
 void
 st_insert(st_t *tree, int value)

@@ -10,7 +10,7 @@
 #define FALSE (0)
 
 bst_t*
-bst_create()
+bst_create(void)
 {
     bst_t *tree = malloc(sizeof(bst_t));
     assert(tree);

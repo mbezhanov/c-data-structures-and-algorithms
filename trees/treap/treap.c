@@ -13,7 +13,7 @@
 #define FALSE (0)
 
 treap_t*
-treap_create()
+treap_create(void)
 {
     treap_t *tree = malloc(sizeof(treap_t));
     assert(tree);

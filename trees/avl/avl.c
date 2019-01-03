@@ -12,7 +12,7 @@
 #define FALSE (0)
 
 avl_t*
-avl_create()
+avl_create(void)
 {
     avl_t *tree = malloc(sizeof(avl_t));
     assert(tree);
