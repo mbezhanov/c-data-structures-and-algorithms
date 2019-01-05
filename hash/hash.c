@@ -90,7 +90,7 @@ hash_print(hash_t *hash)
 
     for (int i = 0; i < HASH_BUCKET_SIZE; i++)
     {
-        printf("Bucket %02d: ", i + 1);
+        printf("Bucket %02d: ", i);
         sll_print(hash->buckets[i]);
         putchar('\n');
     }
