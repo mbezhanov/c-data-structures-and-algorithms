@@ -2,12 +2,20 @@
 #include <stdio.h>
 #include "utils.h"
 
+#ifndef DS_NAME
+#define DS_NAME "data structure"
+#endif
+
+#ifndef DS_CONSTITUENTS_NAME
+#define DS_CONSTITUENTS_NAME "nodes"
+#endif
+
 static void
 print_usage_details(const char *command)
 {
     fprintf(stderr, "Usage: %s [arguments]\n\n", command);
     fprintf(stderr, "Arguments:\n");
-    fprintf(stderr, "  size      Number of nodes to insert into the data structure.\n");
+    fprintf(stderr, "  size      Number of %s to insert into the %s.\n", DS_CONSTITUENTS_NAME, DS_NAME);
     fprintf(stderr, "  seed      An int for seeding the random number generator (default: 1)\n");
     fprintf(stderr, "  interval  Interval between subsequent node values (default: 5)\n");
 }
