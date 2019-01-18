@@ -5,8 +5,9 @@
 #define COMMAND_CREATE (1)
 #define COMMAND_CONNECT (2)
 #define COMMAND_DISCONNECT (3)
-#define COMMAND_DFS (4)
-#define COMMAND_QUIT (5)
+#define COMMAND_BFS (4)
+#define COMMAND_DFS (5)
+#define COMMAND_QUIT (6)
 
 typedef struct command_s {
     int id;

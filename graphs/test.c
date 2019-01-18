@@ -4,6 +4,7 @@
 #include <string.h>
 #include "graph.h"
 #include "queue.h"
+#include "bfs.h"
 #include "dfs.h"
 #include "repl.h"
 
@@ -39,6 +40,20 @@ main(int argc, char **argv)
         {
             graph_del_edge(graph, command->args[0], command->args[1]);
         }
+        else if (command->id == COMMAND_BFS)
+        {
+            queue_t *results = bfs(graph, command->args[0]);
+            queue_node_t *node = results->head;
+            printf("BFS: ");
+
+            while (node != NULL)
+            {
+                printf("%i; ", node->value);
+                node = node->next;
+            }
+            printf("\n");
+            queue_destroy(results);
+        }
         else if (command->id == COMMAND_DFS)
         {
             queue_t *results = dfs(graph, command->args[0]);
@@ -61,7 +76,11 @@ main(int argc, char **argv)
 
         free(command);
     }
-    graph_destroy(graph);
+
+    if (graph != NULL)
+    {
+        graph_destroy(graph);
+    }
 
     return 0;
 }

@@ -13,6 +13,7 @@ print_usage_details()
     printf("  create NODES            create a new graph consisting of X nodes (e.g. \"create 10\")\n");
     printf("  connect NODE1 NODE2     create a connection between two nodes (e.g. \"connect 0 2\")\n");
     printf("  disconnect NODE1 NODE2  remove connection between two nodes (e.g. \"disconnect 0 2\")\n");
+    printf("  bfs NODE                perform BFS starting from a particular node (e.g. \"bfs 0\")\n");
     printf("  dfs NODE                perform DFS starting from a particular node (e.g. \"dfs 0\")\n");
     printf("  quit                    quit the DFS REPL (you can also use \"exit\"\n\n");
 }
@@ -56,6 +57,10 @@ getcmd()
             else if (strcmp(buffer, "disconnect") == 0)
             {
                 command->id = COMMAND_DISCONNECT;
+            }
+            else if (strcmp(buffer, "bfs") == 0)
+            {
+                command->id = COMMAND_BFS;
             }
             else if (strcmp(buffer, "dfs") == 0)
             {

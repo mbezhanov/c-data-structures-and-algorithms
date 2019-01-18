@@ -6,19 +6,19 @@
 #define TRUE (1)
 
 static void
-dfs_internal(graph_t *graph, queue_t *list, int *visited, int value)
+dfs_internal(graph_t *graph, queue_t *results, int *visited, int value)
 {
     if (visited[value] == TRUE)
     {
         return;
     }
     visited[value] = TRUE;
-    queue_enqueue(list, value);
+    queue_enqueue(results, value);
     queue_node_t *node = graph->adjacency_list[value]->head;
 
     while (node != NULL)
     {
-        dfs_internal(graph, list, visited, node->value);
+        dfs_internal(graph, results, visited, node->value);
         node = node->next;
     }
 }
@@ -26,12 +26,12 @@ dfs_internal(graph_t *graph, queue_t *list, int *visited, int value)
 queue_t*
 dfs(graph_t *graph, int node)
 {
-    queue_t *list = queue_create();
+    queue_t *results = queue_create();
     int *visited = calloc(graph->nodes, sizeof(int));
     assert(visited);
 
-    dfs_internal(graph, list, visited, node);
+    dfs_internal(graph, results, visited, node);
     free(visited);
 
-    return list;
+    return results;
 }
