@@ -2,7 +2,7 @@
 #define SORT_H
 
 // utility functions
-#include "utils/swap.h"
+#include "swap.h"
 
 // iterative algorithms
 #include "bubble/bubble.h"

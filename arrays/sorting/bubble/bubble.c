@@ -1,5 +1,5 @@
 #include "bubble.h"
-#include "../utils/swap.h"
+#include "swap.h"
 
 void
 bubble_sort(int *arr, int len)

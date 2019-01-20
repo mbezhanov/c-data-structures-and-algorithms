@@ -1,5 +1,5 @@
 #include "quick.h"
-#include "../utils/swap.h"
+#include "swap.h"
 
 void
 quick_sort(int *arr, int start, int end)

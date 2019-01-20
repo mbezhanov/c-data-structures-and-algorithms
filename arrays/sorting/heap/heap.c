@@ -1,5 +1,5 @@
 #include "heap.h"
-#include "../utils/swap.h"
+#include "swap.h"
 
 static void
 push_down(int *arr, int len, int parent)
