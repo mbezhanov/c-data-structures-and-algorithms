@@ -14,7 +14,7 @@ struct queue_s {
     queue_node_t *tail;
 };
 
-queue_t* queue_create();
+queue_t* queue_create(void);
 void queue_enqueue(queue_t *queue, int value);
 int queue_dequeue(queue_t *queue);
 void queue_destroy(queue_t *queue);

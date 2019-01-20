@@ -3,7 +3,7 @@
 #include "queue.h"
 
 queue_t*
-queue_create()
+queue_create(void)
 {
     queue_t *queue = malloc(sizeof(queue_t));
     assert(queue);
