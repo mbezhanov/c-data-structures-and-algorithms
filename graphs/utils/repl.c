@@ -10,12 +10,15 @@ print_usage_details()
 {
     printf("Depth-First Search REPL\n\n");
     printf("Available commands:\n");
-    printf("  create NODES            create a new graph consisting of X nodes (e.g. \"create 10\")\n");
-    printf("  connect NODE1 NODE2     create a connection between two nodes (e.g. \"connect 0 2\")\n");
-    printf("  disconnect NODE1 NODE2  remove connection between two nodes (e.g. \"disconnect 0 2\")\n");
-    printf("  bfs NODE                perform BFS starting from a particular node (e.g. \"bfs 0\")\n");
-    printf("  dfs NODE                perform DFS starting from a particular node (e.g. \"dfs 0\")\n");
-    printf("  quit                    quit the DFS REPL (you can also use \"exit\"\n\n");
+    printf("  create NODES                create a new graph consisting of X nodes (e.g. \"create 10\")\n");
+    printf("  connect NODE1 NODE2 WEIGHT  create a connection between two nodes, optionally specify a weight\n");
+    printf("                              (e.g. \"connect 0 2\", \"connect 0 2 10\", etc.)\n");
+    printf("  disconnect NODE1 NODE2      remove connection between two nodes (e.g. \"disconnect 0 2\")\n");
+    printf("  bfs NODE                    perform BFS starting from a particular node (e.g. \"bfs 0\")\n");
+    printf("  dfs NODE                    perform DFS starting from a particular node (e.g. \"dfs 0\")\n");
+    printf("  dijkstra NODE               starting from a given node, find the shortest paths to all reachable\n");
+    printf("                              nodes (using Dijkstra's algorithm)\n");
+    printf("  quit                        quit the DFS REPL (you can also use \"exit\"\n\n");
 }
 
 command_t*
@@ -70,6 +73,10 @@ getcmd()
             else if (strcmp(buffer, "dfs") == 0)
             {
                 command->id = COMMAND_DFS;
+            }
+            else if (strcmp(buffer, "dijkstra") == 0)
+            {
+                command->id = COMMAND_DIJKSTRA;
             }
             else if (strcmp(buffer, "quit") == 0 || strcmp(buffer, "exit") == 0)
             {

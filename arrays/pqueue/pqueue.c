@@ -15,12 +15,19 @@
 }
 #define EXISTS(queue, index) (index < queue->count)
 
+#ifdef MIN_HEAP
+#define HAS_HIGHER_PRIORITY(queue, a, b) (PRIORITY(queue, a) > PRIORITY(queue, b))
+#else // max heap
+#define HAS_HIGHER_PRIORITY(queue, a, b) (PRIORITY(queue, b) > PRIORITY(queue, a))
+#endif
+
 pqueue_t*
 pqueue_create()
 {
     pqueue_t *queue = malloc(sizeof(pqueue_t));
     assert(queue);
     queue->elements = malloc(sizeof(pqueue_el_t*) * PQUEUE_INITIAL_CAPACITY);
+    assert(queue->elements);
     queue->count = 0;
     queue->capacity = PQUEUE_INITIAL_CAPACITY;
 
@@ -53,7 +60,7 @@ pqueue_insert(pqueue_t *queue, int value, int priority)
     queue->elements[queue->count] = element;
 
     // sift up
-    for (int current = queue->count; current > 0 && PRIORITY(queue, current) > PRIORITY(queue, PARENT(current)); current = PARENT(current))
+    for (int current = queue->count; current > 0 && HAS_HIGHER_PRIORITY(queue, current, PARENT(current)); current = PARENT(current))
     {
         SWAP(queue, current, PARENT(current));
     }
@@ -77,12 +84,12 @@ pqueue_extract(pqueue_t *queue)
 
     while (1)
     {
-        if (EXISTS(queue, LEFT(current)) && PRIORITY(queue, LEFT(current)) > PRIORITY(queue, current))
+        if (EXISTS(queue, LEFT(current)) && HAS_HIGHER_PRIORITY(queue, LEFT(current), current))
         {
             top_priority = LEFT(current);
         }
 
-        if (EXISTS(queue, RIGHT(current)) && PRIORITY(queue, RIGHT(current)) > PRIORITY(queue, top_priority))
+        if (EXISTS(queue, RIGHT(current)) && HAS_HIGHER_PRIORITY(queue, RIGHT(current), top_priority))
         {
             top_priority = RIGHT(current);
         }
