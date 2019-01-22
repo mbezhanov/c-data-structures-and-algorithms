@@ -7,9 +7,9 @@ CFLAGS+=$(addprefix -I ,$(INCLUDE_DIRS))
 
 all: test
 
-test: test.o queue.o graph.o bfs.o dfs.o repl.o readline.o
+test: testgraphs.o queue.o graph.o bfs.o dfs.o repl.o readline.o
 	$(CC) $(CFLAGS) -o $@ $^
-test.o: test.c queue.h graph.h dfs.h repl.h
+testgraphs.o: testgraphs.c graph.h queue.h bfs.h dfs.h repl.h
 queue.o: queue.c queue.h
 graph.o: graph.c graph.h queue.h
 bfs.o: bfs.c bfs.h graph.h queue.h

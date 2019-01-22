@@ -11,7 +11,7 @@
 
 typedef struct command_s {
     int id;
-    int args[2];
+    int args[3];
 } command_t;
 
 void print_usage_details();

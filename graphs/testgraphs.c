@@ -34,7 +34,7 @@ main(int argc, char **argv)
         }
         else if (command->id == COMMAND_CONNECT)
         {
-            graph_add_edge(graph, command->args[0], command->args[1]);
+            graph_add_edge(graph, command->args[0], command->args[1], command->args[2] != -1 ? command->args[2] : 0);
         }
         else if (command->id == COMMAND_DISCONNECT)
         {
@@ -42,13 +42,15 @@ main(int argc, char **argv)
         }
         else if (command->id == COMMAND_BFS)
         {
+            int value;
             queue_t *results = bfs(graph, command->args[0]);
             queue_node_t *node = results->head;
             printf("BFS: ");
 
             while (node != NULL)
             {
-                printf("%i; ", node->value);
+                memcpy(&value, node->data, sizeof(int));
+                printf("%i; ", value);
                 node = node->next;
             }
             printf("\n");
@@ -56,13 +58,15 @@ main(int argc, char **argv)
         }
         else if (command->id == COMMAND_DFS)
         {
+            int value;
             queue_t *results = dfs(graph, command->args[0]);
             queue_node_t *node = results->head;
             printf("DFS: ");
 
             while (node != NULL)
             {
-                printf("%i; ", node->value);
+                memcpy(&value, node->data, sizeof(int));
+                printf("%i; ", value);
                 node = node->next;
             }
             printf("\n");

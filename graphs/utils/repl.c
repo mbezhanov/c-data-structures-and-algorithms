@@ -30,6 +30,11 @@ getcmd()
     assert(buffer);
     command_t *command = malloc(sizeof(command_t));
 
+    for (int i = 0; i < 3; i++)
+    {
+        command->args[i] = -1;
+    }
+
     while (1)
     {
         if (line[linepos] != ' ' && line[linepos] != '\0')
@@ -76,7 +81,7 @@ getcmd()
             }
             argcnt++;
         }
-        else if (argcnt < 3)
+        else if (argcnt <= 3)
         {
             command->args[argcnt - 1] = atoi(buffer);
             argcnt++;

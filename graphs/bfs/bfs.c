@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <assert.h>
+#include <string.h>
 #include "bfs.h"
 
 #define FALSE (0)
@@ -8,28 +9,31 @@
 queue_t*
 bfs(graph_t *graph, int node)
 {
-    queue_t* results = queue_create();
-    queue_t* queue = queue_create();
-    int *visited = calloc(graph->nodes, sizeof(int));
+    size_t datasize = sizeof(int);
+    queue_t* results = queue_create(datasize);
+    queue_t* queue = queue_create(datasize);
+    int *visited = calloc(graph->size, datasize);
     assert(visited);
     queue_node_t *curr;
     int value;
 
-    queue_enqueue(queue, node);
+    queue_enqueue(queue, &node);
     visited[node] = TRUE;
 
     while (queue->head != NULL)
     {
-        value = queue_dequeue(queue);
-        queue_enqueue(results, value);
+        queue_dequeue(queue, &value);
+        queue_enqueue(results, &value);
         curr = graph->adjacency_list[value]->head;
 
         while (curr != NULL)
         {
-            if (visited[curr->value] == FALSE)
+            memcpy(&value, curr->data, datasize);
+
+            if (visited[value] == FALSE)
             {
-                queue_enqueue(queue, curr->value);
-                visited[curr->value] = TRUE;
+                queue_enqueue(queue, &value);
+                visited[value] = TRUE;
             }
             curr = curr->next;
         }
