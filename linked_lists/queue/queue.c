@@ -1,32 +1,36 @@
 #include <stdlib.h>
 #include <assert.h>
+#include <string.h>
 #include "queue.h"
 
 queue_t*
-queue_create(void)
+queue_create(size_t datasize)
 {
     queue_t *queue = malloc(sizeof(queue_t));
     assert(queue);
     queue->head = queue->tail = NULL;
+    queue->datasize = datasize;
 
     return queue;
 }
 
 static queue_node_t*
-create_node(int value)
+create_node(void *data, size_t datasize)
 {
     queue_node_t *node = malloc(sizeof(queue_node_t));
     assert(node);
-    node->value = value;
+    node->data = malloc(datasize);
+    assert(node->data);
+    assert(memcpy(node->data, data, datasize));
     node->next = NULL;
 
     return node;
 }
 
 void
-queue_enqueue(queue_t *queue, int value)
+queue_enqueue(queue_t *queue, void *data)
 {
-    queue_node_t *node = create_node(value);
+    queue_node_t *node = create_node(data, queue->datasize);
 
     if (queue->head == NULL)
     {
@@ -39,24 +43,26 @@ queue_enqueue(queue_t *queue, int value)
     queue->tail = node;
 }
 
-int
-queue_dequeue(queue_t *queue)
+void
+queue_dequeue(queue_t *queue, void *data)
 {
     assert(queue->head != NULL);
     queue_node_t *tmp = queue->head;
-    int value = tmp->value;
+    assert(memcpy(data, tmp->data, queue->datasize));
     queue->head = tmp->next;
+    free(tmp->data);
     free(tmp);
-
-    return value;
 }
 
 void
 queue_destroy(queue_t *queue)
 {
+    void *dummy = malloc(queue->datasize);
+
     while (queue->head != NULL)
     {
-        queue_dequeue(queue);
+        queue_dequeue(queue, dummy);
     }
+    free(dummy);
     free(queue);
 }

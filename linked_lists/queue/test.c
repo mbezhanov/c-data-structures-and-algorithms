@@ -17,7 +17,7 @@ int main(int argc, char **argv)
     int *data = malloc(sizeof(int) * size);
     assert(data);
     generate_random_data_sequence(data, argc, argv);
-    queue_t *queue = queue_create();
+    queue_t *queue = queue_create(sizeof(int));
 
     // perform tests
     test_queue(queue, data, size);
@@ -38,12 +38,12 @@ test_queue(queue_t *queue, int *data, int size)
 
     for (i = 0; i < size; i++)
     {
-        queue_enqueue(queue, data[i]);
+        queue_enqueue(queue, &data[i]);
     }
 
     for (i = 0; i < size; i++)
     {
-        value = queue_dequeue(queue);
+        queue_dequeue(queue, &value);
 
         if (value != data[i])
         {
