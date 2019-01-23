@@ -16,9 +16,9 @@
 #define EXISTS(queue, index) (index < queue->count)
 
 #ifdef MIN_HEAP
-#define HAS_HIGHER_PRIORITY(queue, a, b) (PRIORITY(queue, a) > PRIORITY(queue, b))
-#else // max heap
 #define HAS_HIGHER_PRIORITY(queue, a, b) (PRIORITY(queue, b) > PRIORITY(queue, a))
+#else // max heap
+#define HAS_HIGHER_PRIORITY(queue, a, b) (PRIORITY(queue, a) > PRIORITY(queue, b))
 #endif
 
 pqueue_t*
