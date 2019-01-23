@@ -16,9 +16,10 @@ print_usage_details()
     printf("  disconnect NODE1 NODE2      remove connection between two nodes (e.g. \"disconnect 0 2\")\n");
     printf("  bfs NODE                    perform BFS starting from a particular node (e.g. \"bfs 0\")\n");
     printf("  dfs NODE                    perform DFS starting from a particular node (e.g. \"dfs 0\")\n");
-    printf("  dijkstra NODE               starting from a given node, find the shortest paths to all reachable\n");
+    printf("  sp NODE                     starting from a given node, find the shortest paths to all reachable\n");
     printf("                              nodes (using Dijkstra's algorithm)\n");
-    printf("  quit                        quit the DFS REPL (you can also use \"exit\"\n\n");
+    printf("  apsp                        find shortest paths for all pairs (using Floyd-Warshall algorithm)\n");
+    printf("  quit                        quit the DFS REPL (you can also use \"exit\")\n\n");
 }
 
 command_t*
@@ -74,9 +75,13 @@ getcmd()
             {
                 command->id = COMMAND_DFS;
             }
-            else if (strcmp(buffer, "dijkstra") == 0)
+            else if (strcmp(buffer, "sp") == 0)
             {
-                command->id = COMMAND_DIJKSTRA;
+                command->id = COMMAND_SINGLE_SOURCE_SHORTEST_PATH;
+            }
+            else if (strcmp(buffer, "apsp") == 0)
+            {
+                command->id = COMMAND_ALL_PAIRS_SHORTEST_PATH;
             }
             else if (strcmp(buffer, "quit") == 0 || strcmp(buffer, "exit") == 0)
             {

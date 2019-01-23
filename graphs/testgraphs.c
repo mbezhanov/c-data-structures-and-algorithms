@@ -6,6 +6,7 @@
 #include "bfs.h"
 #include "dfs.h"
 #include "dijkstra.h"
+#include "floydwarshall.h"
 #include "repl.h"
 
 int
@@ -73,14 +74,22 @@ main(int argc, char **argv)
             printf("\n");
             queue_destroy(results);
         }
-        else if (command->id == COMMAND_DIJKSTRA)
+        else if (command->id == COMMAND_SINGLE_SOURCE_SHORTEST_PATH)
         {
             spinfo_t *sp = dijkstra(graph, command->args[0]);
-            print_shortest_paths(sp);
+            dijkstra_print(sp);
             free(sp->visited);
             free(sp->dist);
             free(sp->prev);
             free(sp);
+        }
+        else if (command->id == COMMAND_ALL_PAIRS_SHORTEST_PATH)
+        {
+            apspinfo_t *apsp = floyd_warshall(graph);
+            floyd_warshall_print(apsp);
+            free(apsp->dist);
+            free(apsp->next);
+            free(apsp);   
         }
         else if (command->id == COMMAND_QUIT)
         {

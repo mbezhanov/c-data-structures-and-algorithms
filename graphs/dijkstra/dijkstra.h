@@ -3,7 +3,7 @@
 
 #include "graph.h"
 
-// a struct for storing shortest path information
+// struct for storing shortest path information
 typedef struct spinfo_s {
     int start;
     int *visited;
@@ -12,10 +12,10 @@ typedef struct spinfo_s {
     int len;
 } spinfo_t;
 
-// core function
+// core functions
 spinfo_t* dijkstra(graph_t *graph, int start);
 
 // helper functions
-void print_shortest_paths(spinfo_t *sp);
+void dijkstra_print(spinfo_t *sp);
 
 #endif // DIJKSTRA_H

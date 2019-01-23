@@ -53,11 +53,6 @@ dijkstra(graph_t *graph, int start)
     while (pqueue->count != 0)
     {
         value = pqueue_extract(pqueue);
-
-        if (sp->visited[value] == TRUE)
-        {
-            continue;
-        }
         sp->visited[value] = TRUE;
         
         for (queue_node_t *curr = graph->adjacency_list[value]->head; curr != NULL; curr = curr->next)
@@ -102,9 +97,9 @@ print_path(spinfo_t *sp, int to)
 }
 
 void
-print_shortest_paths(spinfo_t *sp)
+dijkstra_print(spinfo_t *sp)
 {
-    printf("Shortest paths:\n\n");
+    printf("Single-Source Shortest Paths:\n\n");
 
     for (int i = 0; i < sp->len; i++)
     {
